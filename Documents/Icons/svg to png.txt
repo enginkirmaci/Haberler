@@ -1,0 +1,1 @@
+inkscape ile 64px boyutlandir, 20 margin verip boyutlandir. 

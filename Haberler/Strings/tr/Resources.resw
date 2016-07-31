@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About.Header" xml:space="preserve">
+    <value>Hakkında</value>
+  </data>
+  <data name="BuyErrorMessage" xml:space="preserve">
+    <value>Satın alma sırasında beklenmedik bir hata meydana geldi!</value>
+  </data>
+  <data name="CategoryHeader.Text" xml:space="preserve">
+    <value>Kategoriler</value>
+  </data>
+  <data name="FeedbackMessageTitle.Text" xml:space="preserve">
+    <value>Aşağıdaki forma görüş ve önerilerinizi yazıp bizimle paylaşabilirsiniz.</value>
+  </data>
+  <data name="Copyright.Text" xml:space="preserve">
+    <value>copyright © 2014</value>
+  </data>
+  <data name="Description.Text" xml:space="preserve">
+    <value>Haberler+, Windows 10 cihazlarınız için haber uygulamasıdır. Haberler+ birçok özelliği ile dilediğiniz haber kaynağına ulaşmanızı, beğendiğiniz kategorilerdeki haberleri okumanızı sağlar.</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Haberler+</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Hata!</value>
+  </data>
+  <data name="Favorite.Label" xml:space="preserve">
+    <value>favori</value>
+  </data>
+  <data name="Favorites.Text" xml:space="preserve">
+    <value>Favoriler</value>
+  </data>
+  <data name="FeedbackDescription.Text" xml:space="preserve">
+    <value>Uygulamayı ister mağaza üzerinden puanlayabilir, isterseniz görüş ve önerilerinizi bizimle paylaşabilirsiniz.</value>
+  </data>
+  <data name="FeedbackFailureMessage" xml:space="preserve">
+    <value>Mail yollama sırasında hata meydana geldi, lütfen tekrar deneyiniz!</value>
+  </data>
+  <data name="FeedbackHeader.Text" xml:space="preserve">
+    <value>Geri Bildirim</value>
+  </data>
+  <data name="FeedbackMailTitle" xml:space="preserve">
+    <value>{0} Geri Bildirim</value>
+  </data>
+  <data name="FeedbackMessageValidation" xml:space="preserve">
+    <value>Lütfen bir yorum yazınız!</value>
+  </data>
+  <data name="FeedbackSendButton.Text" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="FeedbackSuccessMessage" xml:space="preserve">
+    <value>Mesajınız başarıyla bize ulaşmıştır. Görüş ve önerileriniz teşekkür ederiz.</value>
+  </data>
+  <data name="FeedbackSuccessTitle" xml:space="preserve">
+    <value>Yorumunuz alınmıştır</value>
+  </data>
+  <data name="Filter.Label" xml:space="preserve">
+    <value>filtre</value>
+  </data>
+  <data name="FilterByDate.Text" xml:space="preserve">
+    <value>Tarihe Göre</value>
+  </data>
+  <data name="FilterByTitle.Text" xml:space="preserve">
+    <value>Başlığa Göre</value>
+  </data>
+  <data name="FilterOrder.Text" xml:space="preserve">
+    <value>Sırala</value>
+  </data>
+  <data name="FilterTitle.Text" xml:space="preserve">
+    <value>Filtrele</value>
+  </data>
+  <data name="FollowMe.Text" xml:space="preserve">
+    <value>beni takip edin</value>
+  </data>
+  <data name="LiveTile.Header" xml:space="preserve">
+    <value>Canlı Kutucuk</value>
+  </data>
+  <data name="LiveTileActive.Header" xml:space="preserve">
+    <value>Canlı kutucuk</value>
+  </data>
+  <data name="LiveTileRefreshInterval.Text" xml:space="preserve">
+    <value>Yenileme süresi</value>
+  </data>
+  <data name="LiveTileTransparent.Header" xml:space="preserve">
+    <value>Transparan kutucuklar</value>
+  </data>
+  <data name="Loading.Text" xml:space="preserve">
+    <value>yükleniyor</value>
+  </data>
+  <data name="MainHeader.Text" xml:space="preserve">
+    <value>Haber Kaynakları</value>
+  </data>
+  <data name="Next.Label" xml:space="preserve">
+    <value>sonraki</value>
+  </data>
+  <data name="NO" xml:space="preserve">
+    <value>Hayır</value>
+  </data>
+  <data name="NotBuyErrorMessage" xml:space="preserve">
+    <value>{0} ürününü satın alamadınız!</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>Tamam</value>
+  </data>
+  <data name="OtherApps.Text" xml:space="preserve">
+    <value>diğer uygulamalar</value>
+  </data>
+  <data name="ParseErrorMessage" xml:space="preserve">
+    <value>Kaynak düzgün görüntülenememektedir! 
+
+Lütfen daha sonra tekrar deneyiniz.</value>
+  </data>
+  <data name="PinToStart.Label" xml:space="preserve">
+    <value>sabitle</value>
+  </data>
+  <data name="Prev.Label" xml:space="preserve">
+    <value>önceki</value>
+  </data>
+  <data name="Preview.Text" xml:space="preserve">
+    <value>Önizleme</value>
+  </data>
+  <data name="Privacy.Content" xml:space="preserve">
+    <value>Gizlilik Sözleşmesi</value>
+  </data>
+  <data name="RateMessage" xml:space="preserve">
+    <value>Bize 5 yıldız verirseniz mutlu oluruz.
+
+Markette bize sevgi göstermeniz bizim yaptığımıza devam etmemizi ve uygulamayı daha iyi yapmamızı sağlayacak!</value>
+  </data>
+  <data name="RateMessageTitle" xml:space="preserve">
+    <value>{0} uygulamasını sevdiniz mi?</value>
+  </data>
+  <data name="RateReview.Text" xml:space="preserve">
+    <value>Mağaza üzerinden oy verin!</value>
+  </data>
+  <data name="ReadingFontSize.Text" xml:space="preserve">
+    <value>Yazı Boyutu</value>
+  </data>
+  <data name="ReadingListHeader.Text" xml:space="preserve">
+    <value>Okuma Listesi</value>
+  </data>
+  <data name="ReadingTheme.Text" xml:space="preserve">
+    <value>Yazı Teması</value>
+  </data>
+  <data name="Refresh.Label" xml:space="preserve">
+    <value>yenile</value>
+  </data>
+  <data name="SampleText" xml:space="preserve">
+    <value>Yazı örneği</value>
+  </data>
+  <data name="SampleTitle" xml:space="preserve">
+    <value>Başlık</value>
+  </data>
+  <data name="SampleUrl" xml:space="preserve">
+    <value>siteadresi.com</value>
+  </data>
+  <data name="SettingsHeader.Text" xml:space="preserve">
+    <value>Ayarlar</value>
+  </data>
+  <data name="Share.Label" xml:space="preserve">
+    <value>paylaş</value>
+  </data>
+  <data name="ShowInBrowser.Label" xml:space="preserve">
+    <value>tarayıcıda göster</value>
+  </data>
+  <data name="SourceCategorySearch.PlaceholderText" xml:space="preserve">
+    <value>Kaynak / Kategori Arama</value>
+  </data>
+  <data name="SourceHeader.Text" xml:space="preserve">
+    <value>Kaynaklar</value>
+  </data>
+  <data name="Template.Header" xml:space="preserve">
+    <value>Görünüm</value>
+  </data>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>Koyu</value>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="ThemeSepia" xml:space="preserve">
+    <value>Kahverengi</value>
+  </data>
+  <data name="UnFavorite.Label" xml:space="preserve">
+    <value>kaldır</value>
+  </data>
+  <data name="UnPin.Label" xml:space="preserve">
+    <value>kaldır</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Uyarı!</value>
+  </data>
+  <data name="WhatsNew.Header" xml:space="preserve">
+    <value>Yenilikler</value>
+  </data>
+  <data name="YES" xml:space="preserve">
+    <value>Evet</value>
+  </data>
+  <data name="ReadLater.Label" xml:space="preserve">
+    <value>kaldır</value>
+  </data>
+  <data name="ReadLaterRemove.Label" xml:space="preserve">
+    <value>sakla</value>
+  </data>
+</root>

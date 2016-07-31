@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About.Header" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="BuyErrorMessage" xml:space="preserve">
+    <value>An unexpected error occurred during your purchase!</value>
+  </data>
+  <data name="CategoryHeader.Text" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="Copyright.Text" xml:space="preserve">
+    <value>copyright © 2014</value>
+  </data>
+  <data name="Description.Text" xml:space="preserve">
+    <value>Haberler+, is a turkish news application for Windows 10 devices. With many features, Haberler+ reachs  you news sources you want, allow you to read news from your favorite categories.</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Haberler+</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error!</value>
+  </data>
+  <data name="Favorite.Label" xml:space="preserve">
+    <value>favorite</value>
+  </data>
+  <data name="Favorites.Text" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="FeedbackDescription.Text" xml:space="preserve">
+    <value>You can review the application on the Store or if you want you can share comments and suggestions with us.</value>
+  </data>
+  <data name="FeedbackFailureMessage" xml:space="preserve">
+    <value>English
+
+Error occurred during sending e-mail, please try again!</value>
+  </data>
+  <data name="FeedbackHeader.Text" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="FeedbackMailTitle" xml:space="preserve">
+    <value>{0} Feedback</value>
+  </data>
+  <data name="FeedbackMessageTitle.Text" xml:space="preserve">
+    <value>Type the following form  to share your comments and suggestions with us.</value>
+  </data>
+  <data name="FeedbackMessageValidation" xml:space="preserve">
+    <value>Please write a comment!</value>
+  </data>
+  <data name="FeedbackSendButton.Text" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="FeedbackSuccessMessage" xml:space="preserve">
+    <value>Your message has reached us succesfully. Thank you comments and suggestions.</value>
+  </data>
+  <data name="FeedbackSuccessTitle" xml:space="preserve">
+    <value>Your message has reached us</value>
+  </data>
+  <data name="Filter.Label" xml:space="preserve">
+    <value>filter</value>
+  </data>
+  <data name="FilterByDate.Text" xml:space="preserve">
+    <value>By Date</value>
+  </data>
+  <data name="FilterByTitle.Text" xml:space="preserve">
+    <value>By Title</value>
+  </data>
+  <data name="FilterOrder.Text" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="FilterTitle.Text" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="FollowMe.Text" xml:space="preserve">
+    <value>follow me </value>
+  </data>
+  <data name="LiveTile.Header" xml:space="preserve">
+    <value>Live Tile</value>
+  </data>
+  <data name="LiveTileActive.Header" xml:space="preserve">
+    <value>Live Tile</value>
+  </data>
+  <data name="LiveTileRefreshInterval.Text" xml:space="preserve">
+    <value>Refresh Interval</value>
+  </data>
+  <data name="LiveTileTransparent.Header" xml:space="preserve">
+    <value>Transparent Tile</value>
+  </data>
+  <data name="Loading.Text" xml:space="preserve">
+    <value>loading</value>
+  </data>
+  <data name="MainHeader.Text" xml:space="preserve">
+    <value>Sources</value>
+  </data>
+  <data name="Next.Label" xml:space="preserve">
+    <value>next</value>
+  </data>
+  <data name="NO" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NotBuyErrorMessage" xml:space="preserve">
+    <value>You have not bought the product {0}!</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="OtherApps.Text" xml:space="preserve">
+    <value>other applications</value>
+  </data>
+  <data name="ParseErrorMessage" xml:space="preserve">
+    <value>Source can not be displayed correctly!
+
+Please try again later.</value>
+  </data>
+  <data name="PinToStart.Label" xml:space="preserve">
+    <value>pin to start</value>
+  </data>
+  <data name="Prev.Label" xml:space="preserve">
+    <value>previous</value>
+  </data>
+  <data name="Preview.Text" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="Privacy.Content" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="RateMessage" xml:space="preserve">
+    <value>We'd be happy if you give us 5 stars.
+
+Show us your love in the markets so we continue what we are doing and it will allow us to do better!</value>
+  </data>
+  <data name="RateMessageTitle" xml:space="preserve">
+    <value>Do you like {0} application?</value>
+  </data>
+  <data name="RateReview.Text" xml:space="preserve">
+    <value>Vote on the Store!</value>
+  </data>
+  <data name="ReadingFontSize.Text" xml:space="preserve">
+    <value>Font Size</value>
+  </data>
+  <data name="ReadingListHeader.Text" xml:space="preserve">
+    <value>Reading List</value>
+  </data>
+  <data name="ReadingTheme.Text" xml:space="preserve">
+    <value>Reading Theme</value>
+  </data>
+  <data name="Refresh.Label" xml:space="preserve">
+    <value>refresh</value>
+  </data>
+  <data name="SampleText" xml:space="preserve">
+    <value>Text Sample</value>
+  </data>
+  <data name="SampleTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="SampleUrl" xml:space="preserve">
+    <value>siteurl.com</value>
+  </data>
+  <data name="SettingsHeader.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Share.Label" xml:space="preserve">
+    <value>share</value>
+  </data>
+  <data name="ShowInBrowser.Label" xml:space="preserve">
+    <value>show in browser</value>
+  </data>
+  <data name="SourceCategorySearch.PlaceholderText" xml:space="preserve">
+    <value>Source / Kategori Search</value>
+  </data>
+  <data name="SourceHeader.Text" xml:space="preserve">
+    <value>Sources</value>
+  </data>
+  <data name="Template.Header" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="ThemeSepia" xml:space="preserve">
+    <value>Sepia</value>
+  </data>
+  <data name="UnFavorite.Label" xml:space="preserve">
+    <value>unfavorite</value>
+  </data>
+  <data name="UnPin.Label" xml:space="preserve">
+    <value>remove pin</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Warning!</value>
+  </data>
+  <data name="WhatsNew.Header" xml:space="preserve">
+    <value>What's New</value>
+  </data>
+  <data name="YES" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="ReadLater.Label" xml:space="preserve">
+    <value>remove</value>
+  </data>
+  <data name="ReadLaterRemove.Label" xml:space="preserve">
+    <value>read later</value>
+  </data>
+</root>

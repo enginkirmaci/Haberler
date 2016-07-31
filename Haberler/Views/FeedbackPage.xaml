@@ -1,0 +1,92 @@
+﻿<Page x:Class="Haberler.Views.FeedbackPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Haberler.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:mvvm="using:Prism.Windows.Mvvm"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      NavigationCacheMode="Disabled"
+      mvvm:ViewModelLocator.AutoWireViewModel="true"
+      mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Medium">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="FormPanel.Width" Value="560" />
+                        <Setter Target="FormPanel.HorizontalAlignment" Value="Left" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="FeedbackHeader.Margin" Value="60,0,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Height="48" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
+            <TextBlock x:Uid="FeedbackHeader"
+                       x:Name="FeedbackHeader"
+                       Margin="12,0,0,0"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource BaseTextBlockStyle}"
+                       Text="FeedbackHeader" />
+        </Grid>
+
+        <StackPanel x:Name="FormPanel"
+                    Grid.Row="1"
+                    Margin="12">
+            <TextBlock x:Uid="FeedbackDescription"
+                       Text="FeedbackDescription"
+                       TextWrapping="Wrap" />
+
+            <Button Margin="0,12,0,0" Command="{Binding RateReviewCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,0,12,0"
+                               FontFamily="Segoe MDL2 Assets"
+                               FontSize="20"
+                               Text="&#xe19f;" />
+                    <TextBlock x:Uid="RateReview" Text="RateReview" />
+                </StackPanel>
+            </Button>
+
+            <TextBlock x:Uid="FeedbackMessageTitle"
+                       Margin="0,36,0,12"
+                       Text="FeedbackMessageTitle"
+                       TextWrapping="Wrap" />
+            <TextBox Height="202"
+                     AcceptsReturn="True"
+                     Text="{Binding Comment,
+                                    Mode=TwoWay}" />
+            <TextBlock Foreground="{StaticResource SystemControlBackgroundAccentBrush}" Text="{Binding CommentValidation}" />
+            <Button Margin="0,12"
+                    HorizontalAlignment="Right"
+                    Command="{Binding SendFeedbackCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,0,12,0"
+                               FontFamily="Segoe MDL2 Assets"
+                               FontSize="20"
+                               Text="&#xe122;" />
+                    <TextBlock x:Uid="FeedbackSendButton" Text="FeedbackSendButton" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

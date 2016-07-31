@@ -1,0 +1,306 @@
+﻿<Page x:Class="Haberler.Views.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:designViewModels="using:Haberler.DesignViewModels"
+      xmlns:local="using:Haberler.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:mvvm="using:Prism.Windows.Mvvm"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      NavigationCacheMode="Disabled"
+      d:DataContext="{d:DesignInstance designViewModels:SettingsPageDesignViewModel,
+                                       IsDesignTimeCreatable=True}"
+      mvvm:ViewModelLocator.AutoWireViewModel="true"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <CollectionViewSource x:Key="cvs"
+                              IsSourceGrouped="True"
+                              ItemsPath="Lines"
+                              Source="{Binding ChangeLogs}" />
+
+        <Style x:Key="ListViewItemStyle1" TargetType="ListViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <ContentPresenter x:Name="contentPresenter"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="ButtonTemplate" TargetType="Button">
+            <Grid Width="35"
+                  Height="35"
+                  Background="{TemplateBinding BorderBrush}">
+                <Image Margin="{TemplateBinding BorderThickness}" Source="{Binding Background.ImageSource, RelativeSource={RelativeSource TemplatedParent}}" />
+
+                <Grid Margin="0,0,-2,3"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Bottom"
+                      Background="#FF222222">
+                    <TextBlock Margin="0,-2,0,2"
+                               FontSize="{StaticResource TextStyleLargeFontSize}"
+                               Text="{TemplateBinding Content}"
+                               TextWrapping="Wrap" />
+                </Grid>
+            </Grid>
+        </ControlTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Medium">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <!--<Setter Target="FormPanel.Width" Value="560" />
+                        <Setter Target="FormPanel.HorizontalAlignment" Value="Left" />-->
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="SettingsHeader.Margin" Value="60,0,0,0" />
+                        <Setter Target="browser.Height" Value="150" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Height="48" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
+            <TextBlock x:Uid="SettingsHeader"
+                       x:Name="SettingsHeader"
+                       Margin="12,0,0,0"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource BaseTextBlockStyle}"
+                       Text="SettingsHeader" />
+        </Grid>
+
+        <Pivot Grid.Row="1">
+            <PivotItem x:Uid="Template" Header="Template">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock x:Uid="Preview" Text="Preview" />
+                        <WebView x:Name="browser"
+                                 Height="300"
+                                 DefaultBackgroundColor="Transparent" />
+                        <TextBlock x:Uid="ReadingTheme" Text="ReadingTheme" />
+                        <ComboBox ItemsSource="{Binding ThemeList}" SelectedItem="{Binding SelectedTheme, Mode=TwoWay}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Key}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <TextBlock x:Uid="ReadingFontSize" Text="ReadingFontSize" />
+                        <Slider Maximum="30"
+                                Minimum="10"
+                                Value="{Binding FontSize,
+                                                Mode=TwoWay}" />
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem x:Uid="LiveTile" Header="LiveTile">
+                <ScrollViewer>
+                    <StackPanel>
+
+                        <ToggleSwitch x:Uid="LiveTileTransparent" IsOn="{Binding IsTransparentTile, Mode=TwoWay}" />
+                        <ToggleSwitch x:Uid="LiveTileActive" IsOn="{Binding IsBackgroundActive, Mode=TwoWay}" />
+                        <TextBlock x:Uid="LiveTileRefreshInterval" />
+                        <ComboBox ItemsSource="{Binding Intervals}" SelectedItem="{Binding SelectedInterval, Mode=TwoWay}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Resource}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem x:Uid="WhatsNew" Header="WhatsNew">
+                <SemanticZoom>
+                    <SemanticZoom.ZoomedInView>
+                        <ListView ItemContainerStyle="{StaticResource ListViewItemStyle1}" ItemsSource="{Binding Source={StaticResource cvs}}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListView.GroupStyle>
+                                <GroupStyle HidesIfEmpty="True">
+                                    <GroupStyle.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Margin="0,12,0,0"
+                                                       FontWeight="Medium"
+                                                       Foreground="{StaticResource SystemControlBackgroundAccentBrush}"
+                                                       Text="{Binding Header}" />
+                                        </DataTemplate>
+                                    </GroupStyle.HeaderTemplate>
+                                </GroupStyle>
+                            </ListView.GroupStyle>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <ListView VerticalContentAlignment="Center" ItemsSource="{Binding Source={StaticResource cvs}, Path=CollectionGroups}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Margin="5">
+                                        <Grid MinWidth="133"
+                                              Margin="14,0,0,0"
+                                              Background="{StaticResource SystemControlBackgroundAccentBrush}">
+                                            <TextBlock Margin="14,8"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="{StaticResource TextStyleLargeFontSize}"
+                                                       Text="{Binding Group.Header}" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+            </PivotItem>
+            <PivotItem x:Uid="About" Header="About">
+                <ScrollViewer>
+                    <Grid Margin="0,0,12,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel>
+                            <Grid Margin="0,12,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}">
+                                    <Image Source="{Binding ResourceConstant.AppLogo, Source={StaticResource ResourceConstants}}" Stretch="UniformToFill" />
+                                </Grid>
+
+                                <StackPanel Grid.Column="1" Margin="16,8,0,0">
+                                    <TextBlock FontSize="{StaticResource TextStyleLargeFontSize}" Text="{Binding ResourceConstant.AppNameCapitalized, Source={StaticResource ResourceConstants}}" />
+
+                                    <TextBlock Text="{Binding ResourceConstant.AppVersion, Source={StaticResource ResourceConstants}}" />
+                                </StackPanel>
+                            </Grid>
+
+                            <TextBlock x:Uid="Description"
+                                       Margin="0,24,0,0"
+                                       Text="Description"
+                                       TextWrapping="Wrap" />
+
+                            <HyperlinkButton x:Name="AppWebsite"
+                                             Command="{Binding AppWebsiteCommand}"
+                                             Content="{Binding ResourceConstant.AppUrl,
+                                                               Source={StaticResource ResourceConstants}}"
+                                             FontSize="{StaticResource TextStyleLargeFontSize}" />
+
+                            <TextBlock x:Uid="FollowMe"
+                                       Margin="0,10"
+                                       FontSize="{StaticResource TextStyleLargeFontSize}"
+                                       Text="FollowMe" />
+
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="Twitter"
+                                        MinWidth="0"
+                                        MinHeight="0"
+                                        MaxWidth="35"
+                                        MaxHeight="35"
+                                        Margin="0,0,9,0"
+                                        BorderBrush="#FF00ACED"
+                                        Command="{Binding TwitterCommand}"
+                                        Template="{StaticResource ButtonTemplate}">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{Binding ResourceConstant.TwitterLogo, Source={StaticResource ResourceConstants}}" />
+                                    </Button.Background>
+                                </Button>
+                                <Button x:Name="Facebook"
+                                        MinWidth="0"
+                                        MinHeight="0"
+                                        Margin="0,0,9,0"
+                                        BorderBrush="#FF3B5998"
+                                        BorderThickness="0"
+                                        Command="{Binding FacebookCommand}"
+                                        Template="{StaticResource ButtonTemplate}">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{Binding ResourceConstant.FacebookLogo, Source={StaticResource ResourceConstants}}" />
+                                    </Button.Background>
+                                </Button>
+                                <Button x:Name="LinkedIn"
+                                        MinWidth="0"
+                                        MinHeight="0"
+                                        BorderBrush="#FF4875B4"
+                                        BorderThickness="0"
+                                        Command="{Binding LinkedInCommand}"
+                                        Template="{StaticResource ButtonTemplate}">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{Binding ResourceConstant.LinkedinLogo, Source={StaticResource ResourceConstants}}" />
+                                    </Button.Background>
+                                </Button>
+                            </StackPanel>
+
+                            <Button x:Name="OtherApps"
+                                    Margin="0,10,0,0"
+                                    Command="{Binding OtherAppsCommand}">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <TextBlock x:Uid="OtherApps"
+                                                   FontSize="{StaticResource TextStyleLargeFontSize}"
+                                                   FontWeight="Normal"
+                                                   Text="OtherApps" />
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1">
+                            <TextBlock x:Uid="Copyright" />
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <HyperlinkButton x:Name="CompanyWebsite"
+                                                 Margin="0,0,0,18"
+                                                 Command="{Binding CompanyWebsiteCommand}"
+                                                 Content="{Binding ResourceConstant.CompanyName,
+                                                                   Source={StaticResource ResourceConstants}}" />
+                                <HyperlinkButton x:Uid="Privacy"
+                                                 x:Name="PrivacyPolicy"
+                                                 Grid.Column="1"
+                                                 Margin="0,0,0,18"
+                                                 HorizontalAlignment="Right"
+                                                 Command="{Binding PrivacyCommand}"
+                                                 Content="Privacy" />
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>

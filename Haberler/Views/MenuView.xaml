@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="Haberler.Views.MenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:designViewModels="using:Haberler.DesignViewModels"
+             xmlns:local="using:Haberler.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mvvm="using:Prism.Windows.Mvvm"
+             xmlns:vm="clr-namespace:Haberler.ViewModels"
+             d:DataContext="{d:DesignInstance designViewModels:MenuViewDesignViewModel,
+                                              IsDesignTimeCreatable=True}"
+             mvvm:ViewModelLocator.AutoWireViewModel="true"
+             mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Background="#3F000000">
+            <ItemsControl Margin="0,48,0,0"
+                          IsTabStop="False"
+                          ItemsSource="{x:Bind Path=ConcreteDataContext.HeaderCommands}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button AutomationProperties.Name="{Binding DisplayName}"
+                                Command="{Binding Command}"
+                                CommandParameter="{Binding PageToken}"
+                                Style="{StaticResource SplitViewMenuButtonStyle}"
+                                ToolTipService.ToolTip="{Binding DisplayName}">
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Glyph="{Binding FontIcon}" Style="{StaticResource SplitViewMenuFontIconStyle}" />
+                                <TextBlock AutomationProperties.AccessibilityView="Raw"
+                                           Style="{StaticResource SplitViewMenuItemTextStyle}"
+                                           Text="{Binding DisplayName}" />
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Height="48" Orientation="Horizontal">
+                <FontIcon Glyph="&#xe734;" Style="{StaticResource SplitViewMenuFontIconStyle}" />
+                <TextBlock x:Uid="Favorites"
+                           AutomationProperties.AccessibilityView="Raw"
+                           Style="{StaticResource SplitViewMenuItemTextStyle}" />
+            </StackPanel>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+                <ItemsControl IsTabStop="False" ItemsSource="{x:Bind Path=ConcreteDataContext.FavoriteCommands}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button AutomationProperties.Name="{Binding DisplayName}"
+                                    Command="{Binding Command}"
+                                    CommandParameter="{Binding ID}"
+                                    Style="{StaticResource SplitViewMenuButtonStyle}"
+                                    ToolTipService.ToolTip="{Binding DisplayName}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid Background="{Binding Color}">
+                                        <Image Source="{Binding Logo}" Style="{StaticResource SplitViewMenuImageStyle}" />
+                                    </Grid>
+
+                                    <!--<FontIcon Glyph="{Binding FontIcon}" Style="{StaticResource SplitViewMenuFontIconStyle}" />-->
+                                    <TextBlock AutomationProperties.AccessibilityView="Raw"
+                                               Style="{StaticResource SplitViewMenuItemTextStyle}"
+                                               Text="{Binding DisplayName}" />
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid Grid.Row="3" Background="#3F000000">
+            <ItemsControl IsTabStop="False" ItemsSource="{x:Bind Path=ConcreteDataContext.FooterCommands}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button AutomationProperties.Name="{Binding DisplayName}"
+                                Command="{Binding Command}"
+                                CommandParameter="{Binding PageToken}"
+                                Style="{StaticResource SplitViewMenuButtonStyle}"
+                                ToolTipService.ToolTip="{Binding DisplayName}">
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Glyph="{Binding FontIcon}" Style="{StaticResource SplitViewMenuFontIconStyle}" />
+                                <TextBlock AutomationProperties.AccessibilityView="Raw"
+                                           Style="{StaticResource SplitViewMenuItemTextStyle}"
+                                           Text="{Binding DisplayName}" />
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </Grid>
+</UserControl>

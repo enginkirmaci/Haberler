@@ -1,0 +1,121 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                    xmlns:local="using:Haberler">
+
+    <DataTemplate x:Key="ReadingDetailTemplate">
+        <Grid Visibility="{Binding SelectedNews, Converter={StaticResource NullVisibilityConverter}}">
+
+            <Grid Background="{ThemeResource SystemControlBackgroundAltMediumHighBrush}"
+                  Canvas.ZIndex="99"
+                  Visibility="{Binding SelectedNews.IsLoaded,
+                                       ConverterParameter=False,
+                                       Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="yükleniyor" />
+                <ProgressRing Width="40"
+                              Height="40"
+                              Margin="0,-64,0,0"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              IsActive="{Binding SelectedNews.IsLoaded,
+                                                 Converter={StaticResource InvertBooleanConverter}}" />
+            </Grid>
+
+            <CommandBar VerticalAlignment="Bottom" Canvas.ZIndex="1">
+                <AppBarButton x:Uid="Prev"
+                              Command="{Binding PrevButtonCommand}"
+                              Icon="Back"
+                              Visibility="{Binding PrevButton,
+                                                   Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <AppBarButton x:Uid="Favorite"
+                              Command="{Binding FavoriteButtonCommand}"
+                              Icon="Favorite"
+                              Visibility="{Binding FavoriteButton,
+                                                   Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <AppBarButton x:Uid="UnFavorite"
+                              Command="{Binding FavoriteButtonCommand}"
+                              Icon="UnFavorite"
+                              Visibility="{Binding FavoriteButton,
+                                                   ConverterParameter=False,
+                                                   Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <AppBarButton x:Uid="Share"
+                              Command="{Binding ShareButtonCommand}"
+                              Icon="ReShare" />
+                <AppBarButton x:Uid="Next"
+                              Command="{Binding NextButtonCommand}"
+                              Icon="Forward"
+                              Visibility="{Binding NextButton,
+                                                   Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <CommandBar.SecondaryCommands>
+                    <AppBarButton x:Uid="ShowInBrowser" Command="{Binding ShowInBrowserCommand}" />
+                </CommandBar.SecondaryCommands>
+            </CommandBar>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainDetailTemplate">
+        <ListView x:Name="DetailContentPresenter"
+                  HorizontalContentAlignment="Stretch"
+                  IsItemClickEnabled="True"
+                  ItemsSource="{Binding SelectedSource.Categories}"
+                  SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid BorderBrush="{ThemeResource SystemControlBackgroundBaseLowBrush}" BorderThickness="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock VerticalAlignment="Center"
+                                   Padding="14,0,0,0"
+                                   Style="{ThemeResource BaseTextBlockStyle}"
+                                   Text="{Binding Name}" />
+
+                        <Button Grid.Column="1"
+                                Command="{Binding DataContext.FavoriteCategoryCommand,
+                                                  ElementName=DetailContentPresenter}"
+                                CommandParameter="{Binding ID}"
+                                Content="&#xe108;"
+                                Foreground="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+                                Style="{StaticResource IconButtonStyle}"
+                                Visibility="{Binding IsFavorite,
+                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <Button Grid.Column="1"
+                                Command="{Binding DataContext.FavoriteCategoryCommand,
+                                                  ElementName=DetailContentPresenter}"
+                                CommandParameter="{Binding ID}"
+                                Content="&#xe109;"
+                                Style="{StaticResource IconButtonStyle}"
+                                Visibility="{Binding IsFavorite,
+                                                     ConverterParameter=False,
+                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid ItemWidth="280"
+                                   MaximumRowsOrColumns="3"
+                                   Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="6" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="ItemClick">
+                    <core:InvokeCommandAction Command="{Binding Path=SelectCategoryCommand}" />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+        </ListView>
+    </DataTemplate>
+</ResourceDictionary>

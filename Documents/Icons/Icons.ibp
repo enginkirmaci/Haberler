@@ -1,0 +1,14 @@
+//
+// File and path settings
+//
+PathExport 'd:\SkyDrive\Works\Theme Pack\Icons'
+PathClear false
+FileFormat png
+
+//
+// Export settings settings
+//
+ExportWidth 128
+
+
+ 

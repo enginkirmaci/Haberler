@@ -1,0 +1,350 @@
+﻿<Page x:Class="Haberler.Views.ReadingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:cs="using:Haberler.Services.Entities"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:designViewModels="using:Haberler.DesignViewModels"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:local="using:Haberler.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:mvvm="using:Prism.Windows.Mvvm"
+      xmlns:vm="clr-namespace:Haberler.ViewModels"
+      NavigationCacheMode="Enabled"
+      d:DataContext="{d:DesignInstance designViewModels:ReadingPageDesignViewModel,
+                                       IsDesignTimeCreatable=True}"
+      mvvm:ViewModelLocator.AutoWireViewModel="true"
+      mc:Ignorable="d">
+
+    <Grid x:Name="root" Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Medium">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="DesktopAd.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="MasterColumn.Width" Value="*" />
+                        <Setter Target="CommandColumn.Width" Value="0" />
+                        <Setter Target="SearchColumn.Width" Value="0" />
+                        <Setter Target="SourceHeader.Margin" Value="60,0,0,0" />
+                        <Setter Target="SearchGrid.(Grid.Column)" Value="0" />
+                        <Setter Target="SearchGrid.HorizontalAlignment" Value="Right" />
+                        <Setter Target="MobileAd.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="MasterColumn" Width="320" />
+            <ColumnDefinition x:Name="CommandColumn" />
+            <ColumnDefinition x:Name="SearchColumn" Width="320" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.RowSpan="4"
+              Grid.ColumnSpan="4"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Bottom"
+              Canvas.ZIndex="999"
+              Visibility="{Binding IsBought,
+                                   Converter={StaticResource BooleanToVisibilityConverter},
+                                   ConverterParameter=False}">
+            <Grid x:Name="DesktopAd" Visibility="Collapsed">
+                <Button Width="32"
+                        Height="32"
+                        Margin="0,-32,0,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                        Canvas.ZIndex="999"
+                        Command="{Binding RemoveAdsCommand}"
+                        Content="&#xe10a;"
+                        Style="{StaticResource IconButtonStyle}" />
+                <UI:AdControl Width="640"
+                              Height="100"
+                              AdUnitId="247854"
+                              ApplicationId="238357df-3163-4a7d-80d4-a9f58f454382" />
+            </Grid>
+        </Grid>
+
+        <Grid Height="48" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
+            <TextBlock x:Name="SourceHeader"
+                       Margin="12,0,0,0"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource BaseTextBlockStyle}"
+                       Text="{Binding SelectedSource.Name}" />
+        </Grid>
+
+        <CommandBar x:Name="CommandBar"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    DataContext="{Binding DetailViewModel}"
+                    IsEnabled="{Binding SelectedNews,
+                                        Converter={StaticResource NullBooleanConverter}}">
+            <AppBarButton x:Uid="Prev"
+                          Command="{Binding PrevButtonCommand}"
+                          Icon="Back"
+                          Visibility="{Binding PrevButton,
+                                               Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <AppBarButton x:Uid="ReadLaterRemove"
+                          Command="{Binding FavoriteButtonCommand}"
+                          Visibility="{Binding FavoriteButton,
+                                               Converter={StaticResource BooleanToVisibilityConverter}}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xe7bc;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Uid="ReadLater"
+                          Command="{Binding FavoriteButtonCommand}"
+                          Visibility="{Binding FavoriteButton,
+                                               ConverterParameter=False,
+                                               Converter={StaticResource BooleanToVisibilityConverter}}">
+                <AppBarButton.Icon>
+                    <FontIcon Foreground="{ThemeResource SystemControlForegroundAccentBrush}" Glyph="&#xe7bc;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Uid="Share" Command="{Binding ShareButtonCommand}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xe72d;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Uid="Next"
+                          Command="{Binding NextButtonCommand}"
+                          Icon="Forward"
+                          Visibility="{Binding NextButton,
+                                               Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="ShowInBrowser"
+                              Command="{Binding ShowInBrowserCommand}"
+                              Icon="Globe" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+
+        <Grid x:Name="SearchGrid"
+              Grid.Column="2"
+              Height="48"
+              Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+              Visibility="Collapsed">
+            <Grid Margin="6,4">
+                <TextBox x:Uid="SourceCategorySearch"
+                         BorderThickness="0"
+                         InputScope="Search"
+                         Padding="10,8,48,8"
+                         PlaceholderText="SourceCategorySearch"
+                         PreventKeyboardDisplayOnProgrammaticFocus="True" />
+
+                <Button Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Content="&#xe11a;"
+                        Style="{StaticResource IconButtonStyle}" />
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
+              BorderThickness="0,0,1,0">
+            <Pivot Grid.Row="1"
+                   ItemsSource="{Binding SelectedSource.FavoritedCategories}"
+                   SelectedIndex="{Binding SelectedCategoryIndex,
+                                           Mode=TwoWay}">
+                <Pivot.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock FontWeight="Light" Text="{Binding Name}" />
+                    </DataTemplate>
+                </Pivot.HeaderTemplate>
+                <Pivot.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="{Binding DataContext.Margin, ElementName=root}">
+                            <StackPanel VerticalAlignment="Bottom"
+                                        Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                                        Canvas.ZIndex="1"
+                                        Padding="12"
+                                        Visibility="{Binding IsSynchronized,
+                                                             ConverterParameter=False,
+                                                             Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <ProgressBar IsIndeterminate="True" />
+
+                                <TextBlock x:Uid="Loading"
+                                           HorizontalAlignment="Center"
+                                           FontSize="{StaticResource TextStyleLargeFontSize}"
+                                           Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
+                                           Text="Loading" />
+                            </StackPanel>
+
+                            <ListView IsItemClickEnabled="True"
+                                      ItemsSource="{Binding News}"
+                                      SelectedItem="{Binding DataContext.DetailViewModel.SelectedNews,
+                                                             ElementName=root}"
+                                      SelectionMode="Single">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel>
+                                                <TextBlock MaxHeight="112"
+                                                           Text="{Binding Title}"
+                                                           TextTrimming="WordEllipsis"
+                                                           TextWrapping="Wrap" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
+                                                           Text="{Binding Date,
+                                                                          Converter={StaticResource RelativeTimeConverter}}" />
+                                            </StackPanel>
+
+                                            <Grid Grid.Column="1"
+                                                  MaxWidth="80"
+                                                  Margin="6,0,0,0"
+                                                  Padding="0,6">
+                                                <Image Source="{Binding Image}" Stretch="UniformToFill" />
+                                            </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="ItemClick">
+                                        <core:InvokeCommandAction Command="{Binding DataContext.SelectNewsCommand, ElementName=root}" />
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                            </ListView>
+                        </Grid>
+                    </DataTemplate>
+                </Pivot.ItemTemplate>
+            </Pivot>
+        </Grid>
+
+        <WebView x:Name="browser"
+                 Grid.Row="1"
+                 Grid.RowSpan="3"
+                 Grid.Column="1"
+                 Grid.ColumnSpan="2"
+                 DataContext="{Binding DetailViewModel}"
+                 DefaultBackgroundColor="Transparent"
+                 Visibility="{Binding SelectedNews,
+                                      Converter={StaticResource NullVisibilityConverter}}" />
+
+        <Grid Grid.Row="1"
+              Grid.RowSpan="3"
+              Grid.Column="1"
+              Grid.ColumnSpan="2"
+              Canvas.ZIndex="99"
+              DataContext="{Binding DetailViewModel}"
+              Visibility="{Binding SelectedNews,
+                                   Converter={StaticResource NullVisibilityConverter}}">
+            <Grid Background="{ThemeResource SystemControlBackgroundAltMediumHighBrush}" Visibility="{Binding SelectedNews.IsLoaded, ConverterParameter=False, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock x:Uid="Loading"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="Loading" />
+
+                <ProgressRing Width="40"
+                              Height="40"
+                              Margin="0,-64,0,0"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              IsActive="{Binding SelectedNews.IsLoaded,
+                                                 Converter={StaticResource InvertBooleanConverter}}" />
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Bottom"
+              Canvas.ZIndex="999"
+              Visibility="{Binding IsBought,
+                                   Converter={StaticResource BooleanToVisibilityConverter},
+                                   ConverterParameter=False}">
+            <Grid x:Name="MobileAd" Visibility="Collapsed">
+                <Button Width="24"
+                        Height="24"
+                        Margin="0,-24,0,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                        Canvas.ZIndex="999"
+                        Command="{Binding RemoveAdsCommand}"
+                        Content="&#xe10a;"
+                        Style="{StaticResource IconButtonStyle}" />
+                <UI:AdControl Width="320"
+                              Height="50"
+                              AdUnitId="247855"
+                              ApplicationId="6342d8ae-baaa-47e7-8e7f-919e2cd9c26f" />
+            </Grid>
+        </Grid>
+
+        <CommandBar Grid.Row="3" Visibility="{Binding IsFavorited, ConverterParameter=False, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <!--<AppBarToggleButton x:Uid="Filter"
+                                Icon="Filter"
+                                IsChecked="{Binding IsFilterActive}"
+                                />-->
+
+            <AppBarButton x:Uid="UnFavorite"
+                          Command="{Binding FavoriteSourceCommand}"
+                          Content="&#xe734;"
+                          Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
+                          Visibility="{Binding SelectedSource.IsFavorite,
+                                               Converter={StaticResource BooleanToVisibilityConverter}}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xe734;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+
+            <AppBarButton x:Uid="Favorite"
+                          Command="{Binding FavoriteSourceCommand}"
+                          Content="&#xe734;"
+                          Visibility="{Binding SelectedSource.IsFavorite,
+                                               ConverterParameter=False,
+                                               Converter={StaticResource BooleanToVisibilityConverter}}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xe734;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+
+            <AppBarButton x:Uid="PinToStart"
+                          Command="{Binding PinToStartCommand}"
+                          Icon="Pin"
+                          Visibility="{Binding IsPinned,
+                                               ConverterParameter=False,
+                                               Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <AppBarButton x:Uid="UnPin"
+                          Command="{Binding PinToStartCommand}"
+                          Icon="UnPin"
+                          Visibility="{Binding IsPinned,
+                                               Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <AppBarButton x:Uid="Refresh"
+                          x:Name="RefreshCategory"
+                          Command="{Binding RefreshCategoryCommand}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xe117;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </CommandBar>
+    </Grid>
+</Page>

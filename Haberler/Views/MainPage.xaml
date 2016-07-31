@@ -1,0 +1,218 @@
+﻿<Page x:Class="Haberler.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:cs="using:Haberler.Services.Entities"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:designViewModels="using:Haberler.DesignViewModels"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:local="using:Haberler.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:mvvm="using:Prism.Windows.Mvvm"
+      xmlns:vm="clr-namespace:Haberler.ViewModels"
+      NavigationCacheMode="Enabled"
+      d:DataContext="{d:DesignInstance designViewModels:MainPageDesignViewModel,
+                                       IsDesignTimeCreatable=True}"
+      mvvm:ViewModelLocator.AutoWireViewModel="true"
+      mc:Ignorable="d">
+
+    <Grid x:Name="root" Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Medium">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="DesktopAd.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="MasterColumn.Width" Value="*" />
+                        <Setter Target="DetailColumn.Width" Value="0" />
+                        <Setter Target="SearchGrid.Width" Value="250" />
+                        <Setter Target="SourceHeader.Margin" Value="60,0,0,0" />
+                        <Setter Target="MobileAd.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="MasterColumn" Width="320" />
+            <ColumnDefinition x:Name="DetailColumn" Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.ColumnSpan="2"
+              Height="48"
+              Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition x:Name="SearchGrid" Width="320" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Uid="SourceHeader"
+                       x:Name="SourceHeader"
+                       Grid.ColumnSpan="2"
+                       Margin="12,0,0,0"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource BaseTextBlockStyle}"
+                       Text="SourceHeader" />
+
+            <Grid Grid.Column="1"
+                  Margin="6,4"
+                  Visibility="Collapsed">
+                <TextBox x:Uid="SourceCategorySearch"
+                         BorderThickness="0"
+                         InputScope="Search"
+                         Padding="10,8,48,8"
+                         PlaceholderText="SourceCategorySearch"
+                         PreventKeyboardDisplayOnProgrammaticFocus="True" />
+
+                <Button Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Content="&#xe11a;"
+                        Style="{StaticResource IconButtonStyle}" />
+            </Grid>
+        </Grid>
+
+        <Grid Grid.RowSpan="3"
+              Grid.ColumnSpan="2"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Bottom"
+              Canvas.ZIndex="999"
+              Visibility="{Binding IsBought,
+                                   Converter={StaticResource BooleanToVisibilityConverter},
+                                   ConverterParameter=False}">
+            <Grid x:Name="DesktopAd" Visibility="Collapsed">
+                <Button Width="32"
+                        Height="32"
+                        Margin="0,-32,0,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                        Canvas.ZIndex="999"
+                        Command="{Binding RemoveAdsCommand}"
+                        Content="&#xe10a;"
+                        Style="{StaticResource IconButtonStyle}" />
+                <UI:AdControl Width="640"
+                              Height="100"
+                              AdUnitId="247854"
+                              ApplicationId="238357df-3163-4a7d-80d4-a9f58f454382" />
+            </Grid>
+        </Grid>
+
+        <ListView x:Name="MasterListView"
+                  Grid.Row="1"
+                  BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
+                  BorderThickness="0,0,1,0"
+                  IsItemClickEnabled="True"
+                  ItemsSource="{Binding Sources}"
+                  SelectedItem="{Binding DetailViewModel.SelectedSource,
+                                         Mode=TwoWay}"
+                  SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="cs:Source">
+                    <Grid Margin="0,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid Width="44"
+                                  Height="44"
+                                  Background="{x:Bind Color}">
+                                <Image Width="32" Source="{x:Bind Logo}" />
+                            </Grid>
+                            <TextBlock Grid.Column="1"
+                                       Margin="12,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Style="{ThemeResource BaseTextBlockStyle}"
+                                       Text="{x:Bind Name}" />
+                        </Grid>
+
+                        <Button Grid.Column="1"
+                                Command="{Binding DataContext.FavoriteSourceCommand,
+                                                  ElementName=root}"
+                                CommandParameter="{Binding ID}"
+                                Content="&#xe734;"
+                                Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
+                                Style="{StaticResource IconButtonStyle}"
+                                Visibility="{x:Bind IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        <Button Grid.Column="1"
+                                VerticalAlignment="Stretch"
+                                Command="{Binding DataContext.FavoriteSourceCommand,
+                                                  ElementName=root}"
+                                CommandParameter="{Binding ID}"
+                                Content="&#xe734;"
+                                Foreground="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}"
+                                Style="{StaticResource IconButtonStyle}"
+                                Visibility="{x:Bind IsFavorite, ConverterParameter=False, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="ItemClick">
+                    <core:InvokeCommandAction Command="{Binding Path=SelectSourceCommand}" />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+        </ListView>
+
+        <ContentControl x:Name="DetailDataContext"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        ContentTemplate="{StaticResource MainDetailTemplate}"
+                        DataContext="{Binding DetailViewModel}"
+                        Padding="24,0" />
+
+        <Grid Grid.Row="2"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Bottom"
+              Canvas.ZIndex="999"
+              Visibility="{Binding IsBought,
+                                   Converter={StaticResource BooleanToVisibilityConverter},
+                                   ConverterParameter=False}">
+            <Grid x:Name="MobileAd" Visibility="Collapsed">
+                <Button Width="24"
+                        Height="24"
+                        Margin="0,-24,0,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                        Canvas.ZIndex="999"
+                        Command="{Binding RemoveAdsCommand}"
+                        Content="&#xe10a;"
+                        Style="{StaticResource IconButtonStyle}" />
+                <UI:AdControl Width="320"
+                              Height="50"
+                              AdUnitId="247855"
+                              ApplicationId="6342d8ae-baaa-47e7-8e7f-919e2cd9c26f" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

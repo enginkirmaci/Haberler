@@ -1,0 +1,91 @@
+﻿<Page x:Class="Haberler.Views.ReadingDetailPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:designViewModels="using:Haberler.DesignViewModels"
+      xmlns:local="using:Haberler.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:mvvm="using:Prism.Windows.Mvvm"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      NavigationCacheMode="Disabled"
+      d:DataContext="{d:DesignInstance designViewModels:ReadingDetailPageDesignViewModel,
+                                       IsDesignTimeCreatable=True}"
+      mvvm:ViewModelLocator.AutoWireViewModel="true"
+      mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--<Grid Height="48" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" />-->
+
+        <WebView x:Name="browser"
+                 DefaultBackgroundColor="Transparent"
+                 Visibility="{Binding SelectedNews,
+                                      Converter={StaticResource NullVisibilityConverter}}" />
+        <Grid Canvas.Top="50"
+              Background="{ThemeResource SystemControlBackgroundAltMediumHighBrush}"
+              Canvas.ZIndex="99"
+              Visibility="{Binding SelectedNews.IsLoaded,
+                                   ConverterParameter=False,
+                                   Converter={StaticResource BooleanToVisibilityConverter}}">
+
+            <TextBlock x:Uid="Loading"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Text="Loading" />
+            <ProgressRing Width="40"
+                          Height="40"
+                          Margin="0,-64,0,0"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          IsActive="{Binding SelectedNews.IsLoaded,
+                                             Converter={StaticResource InvertBooleanConverter}}" />
+        </Grid>
+
+        <CommandBar x:Name="CommandBar"
+                    Grid.Row="1"
+                    IsEnabled="{Binding SelectedNews,
+                                        Converter={StaticResource NullBooleanConverter}}">
+            <AppBarButton x:Uid="Prev"
+                          Command="{Binding PrevButtonCommand}"
+                          Icon="Back"
+                          Visibility="{Binding PrevButton,
+                                               Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <AppBarButton x:Uid="ReadLaterRemove"
+                          Command="{Binding FavoriteButtonCommand}"
+                          Visibility="{Binding FavoriteButton,
+                                               Converter={StaticResource BooleanToVisibilityConverter}}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xe7bc;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Uid="ReadLater"
+                          Command="{Binding FavoriteButtonCommand}"
+                          Visibility="{Binding FavoriteButton,
+                                               ConverterParameter=False,
+                                               Converter={StaticResource BooleanToVisibilityConverter}}">
+                <AppBarButton.Icon>
+                    <FontIcon Foreground="{ThemeResource SystemControlForegroundAccentBrush}" Glyph="&#xe7bc;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Uid="Share" Command="{Binding ShareButtonCommand}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xe72d;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Uid="Next"
+                          Command="{Binding NextButtonCommand}"
+                          Icon="Forward"
+                          Visibility="{Binding NextButton,
+                                               Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="ShowInBrowser"
+                              Command="{Binding ShowInBrowserCommand}"
+                              Icon="Globe" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Grid>
+</Page>

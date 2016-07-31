@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{706B4247-96C8-4F84-B6DD-CBA0F0B003CC}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Haberler</RootNamespace>
+    <AssemblyName>Haberler</AssemblyName>
+    <DefaultLanguage>tr</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>Haberler_StoreKey.pfx</PackageCertificateKeyFile>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <ApplicationInsightsResourceId>/subscriptions/ce751d9a-78d3-40bc-80a8-2c049bb74a74/resourcegroups/Default-Web-WestUS/providers/microsoft.insights/components/Haberler</ApplicationInsightsResourceId>
+    <PackageCertificateThumbprint>E377F347A6B9AD0ECAB0D07B6B7DA7E0331ADEBA</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Haberler_StoreKey.pfx" />
+    <None Include="project.json" />
+    <None Include="Service References\Application Insights\ConnectedService.json" />
+    <PRIResource Include="Strings\en\Resources.resw" />
+    <PRIResource Include="Strings\tr\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppShell.xaml.cs">
+      <DependentUpon>AppShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DesignViewModels\MainDetailDesignViewModel.cs" />
+    <Compile Include="DesignViewModels\MainPageDesignViewModel.cs" />
+    <Compile Include="DesignViewModels\MenuViewDesignViewModel.cs" />
+    <Compile Include="DesignViewModels\ReadingDetailPageDesignViewModel.cs" />
+    <Compile Include="DesignViewModels\ReadingPageDesignViewModel.cs" />
+    <Compile Include="DesignViewModels\SettingsPageDesignViewModel.cs" />
+    <Compile Include="Events\BackForwardEvent.cs" />
+    <Compile Include="Events\FavoriteSourceEvent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\FeedbackPageViewModel.cs" />
+    <Compile Include="ViewModels\MainDetailPageViewModel.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\MenuItemViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\ReadingDetailPageViewModel.cs" />
+    <Compile Include="ViewModels\ReadingPageViewModel.cs" />
+    <Compile Include="ViewModels\SettingsPageViewModel.cs" />
+    <Compile Include="Views\FeedbackPage.xaml.cs">
+      <DependentUpon>FeedbackPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainDetailPage.xaml.cs">
+      <DependentUpon>MainDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReadingDetailPage.xaml.cs">
+      <DependentUpon>ReadingDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReadingPage.xaml.cs">
+      <DependentUpon>ReadingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="Haberler_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\Icons\facebook.png" />
+    <Content Include="Assets\Icons\linkedin.png" />
+    <Content Include="Assets\Icons\Sources\aksam.png" />
+    <Content Include="Assets\Icons\Sources\aksam_wide.png" />
+    <Content Include="Assets\Icons\Sources\amk.png" />
+    <Content Include="Assets\Icons\Sources\amk_wide.png" />
+    <Content Include="Assets\Icons\Sources\cnnturk.png" />
+    <Content Include="Assets\Icons\Sources\cnnturk_wide.png" />
+    <Content Include="Assets\Icons\Sources\Cumhuriyet.png" />
+    <Content Include="Assets\Icons\Sources\cumhuriyet_wide.png" />
+    <Content Include="Assets\Icons\Sources\fotomac.png" />
+    <Content Include="Assets\Icons\Sources\fotomac_wide.png" />
+    <Content Include="Assets\Icons\Sources\haberturk.png" />
+    <Content Include="Assets\Icons\Sources\haberturk_wide.png" />
+    <Content Include="Assets\Icons\Sources\Hurriyet.png" />
+    <Content Include="Assets\Icons\Sources\hurriyet_wide.png" />
+    <Content Include="Assets\Icons\Sources\Milliyet.png" />
+    <Content Include="Assets\Icons\Sources\milliyet_wide.png" />
+    <Content Include="Assets\Icons\Sources\ntvmsnbc.png" />
+    <Content Include="Assets\Icons\Sources\ntvmsnbc_wide.png" />
+    <Content Include="Assets\Icons\Sources\posta.png" />
+    <Content Include="Assets\Icons\Sources\posta_wide.png" />
+    <Content Include="Assets\Icons\Sources\Radikal.png" />
+    <Content Include="Assets\Icons\Sources\radikal_wide.png" />
+    <Content Include="Assets\Icons\Sources\sozcu.png" />
+    <Content Include="Assets\Icons\Sources\sozcu_wide.png" />
+    <Content Include="Assets\Icons\Sources\vatan.png" />
+    <Content Include="Assets\Icons\Sources\vatan_wide.png" />
+    <Content Include="Assets\Icons\Sources\zaman.png" />
+    <Content Include="Assets\Icons\Sources\zaman_wide.png" />
+    <Content Include="Assets\Icons\twitter.png" />
+    <Content Include="Assets\Icons\warning.png" />
+    <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\Square150x150Logo.png" />
+    <Content Include="Assets\Square310x310Logo.png" />
+    <Content Include="Assets\Square44x44Logo.png" />
+    <Content Include="Assets\Square71x71Logo.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\test.jpg" />
+    <Content Include="Assets\Wide310x150Logo.png" />
+    <Content Include="Properties\Default.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="AppShell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\Templates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\FeedbackPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReadingDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReadingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Library10\Library10.Common\Library10.Common.csproj">
+      <Project>{af963d93-8b93-4513-b2ca-100e424ddd24}</Project>
+      <Name>Library10.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library10\Library10.Core\Library10.Core.csproj">
+      <Project>{29acd866-a6f0-4080-9557-1f39a889c4f4}</Project>
+      <Name>Library10.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library10\Library10.Net\Library10.Net.csproj">
+      <Project>{14dd651e-ca01-4ad5-83ee-8bdd5eced6d5}</Project>
+      <Name>Library10.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library10\Library10.Serializers\Library10.Serializers.csproj">
+      <Project>{fa153af9-df53-4bc0-a78d-4bf228bb869c}</Project>
+      <Name>Library10.Serializers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Open Source\ReadSharp-master\ReadSharp\ReadSharp.csproj">
+      <Project>{06219cad-e85e-48e2-a216-2539805a9ee8}</Project>
+      <Name>ReadSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Haberler.BackgroundTasks\Haberler.BackgroundTasks.csproj">
+      <Project>{c7929a63-6be3-4204-b6ee-9e6f5f9869f4}</Project>
+      <Name>Haberler.BackgroundTasks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Haberler.Common\Haberler.Common.csproj">
+      <Project>{04257676-0cb5-4bff-8f0a-8fdc0b52e83e}</Project>
+      <Name>Haberler.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Haberler.Services\Haberler.Services.csproj">
+      <Project>{c037e47c-ecbd-4559-97c8-6e577f2de776}</Project>
+      <Name>Haberler.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.Advertising.Xaml, Version=10.0">
+      <Name>Microsoft Advertising SDK for XAML</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
